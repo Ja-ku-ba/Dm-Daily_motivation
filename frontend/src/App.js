@@ -1,12 +1,12 @@
+import "./App.scss";
 import React from "react";
 
-import "./App.scss";
 
 function App() {
     
     return (
       <div className="App">
-        <h1>Ok?</h1>
+        <h1 className="test">Ok?</h1>
       </div>
     );
 }
