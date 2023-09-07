@@ -1,0 +1,62 @@
+@use "config" as *;
+
+.NavBar {
+    height: 50px;
+    background-color: $elementsColor;
+    position: sticky;
+    top: 0;
+    right: 0;
+
+    &__elements {
+        display: flex;
+        justify-content: space-between;
+        font-size: 25px;
+        padding: 0;
+
+        &--hamburger {
+            width: 48px;
+            height: 48px;
+
+            & svg {
+                background-image: url(../assets/icons/hamburger.svg);
+                filter: invert(99%) sepia(1%) saturate(1581%) hue-rotate(186deg) brightness(101%) contrast(86%);
+            }
+
+            .btn {
+                border: none;
+                cursor: pointer;
+                position: relative;
+                -webkit-transition: all 0.3s;
+                -moz-transition: all 0.3s;
+                transition: all 0.3s;
+                width: 48px;
+                height: 48px;
+                padding: 0;
+              }
+              
+              .btn:after {
+                -webkit-transition: all 0.3s;
+                -moz-transition: all 0.3s;
+                transition: all 0.3s;
+              }
+              
+              /* Pseudo elements for icons */
+              .btn:before {
+                position: relative;
+                -webkit-font-smoothing: antialiased;
+              }
+              
+              
+              /* Icon separator */
+              .btn-4 {
+                background-color: $elementsColor;
+              }
+              
+              .btn-4:active {
+                top: 2px;
+              }
+        }
+ 
+    }
+}
+

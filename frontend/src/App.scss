@@ -1,11 +1,4 @@
-body {
-  background-color: pink;
-}
+@import "normalize.css/normalize.css";
 
-.App {
-  background-color: aliceblue;
-}
-
-.test {
-  color: red;
-}
+@import "./styles/base.scss";
+@import "./styles/navbar.scss";
