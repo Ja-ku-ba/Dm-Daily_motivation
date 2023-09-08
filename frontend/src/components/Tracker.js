@@ -53,6 +53,10 @@ const Tracker = () => {
 				<p class="month">Dez</p>
 			</div>
 		</div>
+        <div className='legend'>
+            <span className='done'>Done</span>
+            <span className='undone'>Undone</span>
+        </div>
 	</div>
   )
 }

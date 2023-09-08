@@ -1,8 +1,8 @@
 @use "config.scss" as *;
 
 .Tracker {
-	background: #444e80;
-	color: #abafc6;
+	background: $elementsColor;
+	color: $backgroundColor;
 	border-radius: 5px;
 	padding: 20px;
 	width: 95%;
@@ -18,7 +18,7 @@
         }
 
         .bar {
-            background-color: $elementsColor;
+            background-color: $backgroundColor;
             width: 10px;
             margin: 0 auto 10px auto;
             border-radius: 5px;
@@ -62,6 +62,27 @@
     ::-webkit-scrollbar-thumb {
         border-radius: 10px;
         background: $infColor;
+    }
+
+    .legend {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        .done {
+            width: fit-content;
+            background-color: green;
+            padding: 0 2px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        .undone {
+            width: fit-content;
+            background-color: red;
+            padding: 0 2px;
+            border-radius: 5px;
+            margin-bottom: -6px;
+        }
     }
 
 }
