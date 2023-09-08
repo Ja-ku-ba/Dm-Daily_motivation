@@ -1,0 +1,37 @@
+@use "config.scss" as *;
+
+.ToDoList {
+    height: fit-content;
+    max-height: 470px;              // 2 * (tracker height)
+    width: 95%;
+    margin: 15px auto 0 auto;
+    background: $cardColor;
+	color: $backgroundColor;
+	border-radius: 5px;
+	padding: 20px;
+
+    &__group {
+        padding: 0;
+        margin: 0;
+        &__element {
+            background-color: $backgroundColor;
+            color: $elementsColor;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+    }
+
+    &__add {
+
+        & button {
+            border: none;
+            width: 100%;
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            color: $elementsColor;
+        }
+    } 
+}

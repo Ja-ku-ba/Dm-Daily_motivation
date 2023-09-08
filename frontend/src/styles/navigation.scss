@@ -1,0 +1,31 @@
+@use "config" as *;
+
+.Navigation {
+    position: sticky;
+    bottom: 15px;
+    z-index: 2;
+    overflow: hidden;
+    width: 95%;
+    margin: auto;
+    height: 60px;
+    border-radius: 15px;
+    background-color: $navColors;
+    box-shadow: 0 4px 5px 0 gray;
+    display: flex;
+    align-items: center;
+    &__panel {
+        width: 95%;
+        margin: auto;
+        height: 39px;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 15px;
+        &__ele {
+            background-color: $backgroundColor;
+            border-radius: 50px;
+            box-shadow: 0 0 4px 4px $backgroundColor;
+            display: flex;
+            align-content: center;
+        }
+    }
+}
