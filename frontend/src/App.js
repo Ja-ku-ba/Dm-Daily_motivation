@@ -1,19 +1,26 @@
 import "./App.scss";
 import React from "react";
 import NavBar from "./components/NavBar";
-import Tracker from "./components/Tracker";
-import ToDoList from "./components/ToDoList";
 import Navigation from "./components/Navigation";
 
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Home from "./pages/Home";
 
 function App() {
     
     return (
       <div className="App">
         <NavBar/>
-        <Tracker/>
-        <ToDoList/>
-        <ToDoList/>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home/>} exact/>
+          </Routes>
+        </Router>
+        
         <Navigation/>
       </div>
     );
