@@ -4,9 +4,8 @@
     height: 50px;
     margin-bottom: 40px;
     background-color: $navColors;
-    position: sticky;
-    top: 0;
-    right: 0;
+    position: relative;
+    top: 25px;
 
     &__elements {
         display: flex;
@@ -14,6 +13,7 @@
         font-size: 25px;
         padding: 0;
         margin: 0;
+
 
         &--hamburger {
             width: 48px;
@@ -75,7 +75,7 @@
                 padding: 10px;
                 color: $backgroundColor;
                 font-size: 25px;
-                border-top: 1px solid $backgroundColor;
+                border-bottom: 1px solid $backgroundColor;
                 width: 100%;
             }
 
