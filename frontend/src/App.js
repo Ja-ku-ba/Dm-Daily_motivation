@@ -21,7 +21,8 @@ function App() {
           </Routes>
         </Router>
         
-        <Navigation/>
+        <div className="navigation--spaceFiller"></div>
+          <Navigation/>
       </div>
     );
 }

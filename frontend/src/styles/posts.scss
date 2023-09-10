@@ -1,0 +1,58 @@
+@use "config" as *;
+
+.Posts {
+    width: 95%;
+    margin: auto;
+    background-color: $cardColor;
+    color: $backgroundColor;
+    border-radius: 5px;
+    margin-top: 15px;
+    padding: 10px 0;
+
+    &__description {
+        color: $cardColor;
+        background-color: $backgroundColor;
+        width: 95%;
+
+        margin: 0 auto 10px auto;
+        border-radius: 5px;
+    }
+
+    &__image {
+        width: 95%;
+        margin: 0 2.5%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    &__buttons {
+        padding: 5px 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 95%;
+        margin: auto;
+        background-color: $backgroundColor;
+        border-radius: 15px;
+        & li {
+            color: red;
+            border-radius: 15px;
+            box-shadow: 0 0 10px 2px $backgroundColor;
+            width: 48px;
+            height: 48px;
+            background-color: $backgroundColor;
+        }
+
+        &__likes {
+            background-image: url("../assets/icons/like.svg");
+        }
+
+        &__coments {
+            background-image: url("../assets/icons/coments.svg");
+        }
+        
+        &__dislikes {
+            background-image: url("../assets/icons/dislike.svg");
+        }
+    }
+}
