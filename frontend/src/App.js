@@ -9,6 +9,7 @@ import {
   Route,
 } from "react-router-dom";
 import Home from "./pages/Home";
+import Posts from "./pages/Posts";
 
 function App() {
     
@@ -18,6 +19,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home/>} exact/>
+            <Route path="/posts" element={<Posts/>} exact/>
           </Routes>
         </Router>
         
