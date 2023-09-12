@@ -21,10 +21,10 @@ function App() {
             <Route path="/" element={<Home/>} exact/>
             <Route path="/posts" element={<Posts/>} exact/>
           </Routes>
+          <div className="navigation--spaceFiller"></div>
+          <Navigation/>
         </Router>
         
-        <div className="navigation--spaceFiller"></div>
-          <Navigation/>
       </div>
     );
 }
