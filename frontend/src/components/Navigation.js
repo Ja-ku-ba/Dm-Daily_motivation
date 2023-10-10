@@ -28,7 +28,9 @@ const Navigation = () => {
           <img width={"35px"} height={"35px"} src={calendar}/>
         </li>
         <li className='Navigation__panel__ele'>
-          <img width={"35px"} height={"35px"} src={settings}/>
+          <Link to={"/login"}>
+            <img width={"35px"} height={"35px"} src={settings}/>
+          </Link>
         </li>
         </ul>
     </div>

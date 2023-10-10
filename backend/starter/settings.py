@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'api',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -103,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# AUTHENTICATION_BACKENDS = ['api.models.AuthenticateWithEmail']
+AUTH_USER_MODEL = "account.CustomUser"
 
 
 # Internationalization

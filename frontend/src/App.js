@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import Posts from "./pages/Posts";
+import LoginRegister from "./pages/LoginRegister";
 
 function App() {
     
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>} exact/>
             <Route path="/posts" element={<Posts/>} exact/>
+            <Route path="/login" element={<LoginRegister/>} exact/>
           </Routes>
           <div className="navigation--spaceFiller"></div>
           <Navigation/>

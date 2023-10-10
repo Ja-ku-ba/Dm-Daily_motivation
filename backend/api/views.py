@@ -5,6 +5,7 @@ from rest_framework import mixins
 
 from .models import AuthenticateWithEmail
 from .serializers import UserSerializer
+
 # Create your views here.
 class Register(mixins.CreateModelMixin):
     # queryset = User.objects.all()
