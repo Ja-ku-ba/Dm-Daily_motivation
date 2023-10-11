@@ -13,7 +13,7 @@ def registraion_view(request):
     if request.method == "POST":
         serializer = RegistrationSerializer(data=request.data)
         data = {}
-        if serializers.is_valid():
+        if serializer.is_valid():
             account = serializer.save()
             data['response'] = "Sucefully registered a new user"
             data["email"] = account.email
@@ -21,3 +21,4 @@ def registraion_view(request):
         else:
             data = serializer.errors
         return Response(data)
+    
