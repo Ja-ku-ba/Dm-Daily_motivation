@@ -2,36 +2,53 @@ import React, { useState } from 'react'
 import jsSHA from 'jssha';
 
 const LoginRegister = () => {
-    let [action, setAction] = useState(["Zaloguj", "Nie masz konta?", "Zarejestruj się"])
-    let changeAction = () => {
-        if (action[0] === "Zaloguj"){
-            setAction(["Zarejestruj", "Masz konto?", "Zaloguj się"])
+    // action = true, means login, false is register
+    let [action, setAction] = useState(true)            
+    let changeAction = (e) => {
+        const inputElements = document.querySelectorAll('input');
+        inputElements.forEach((input) => {
+            input.value = '';
+        });
+
+        if (action === true){
+            setAction(false)
         }
         else {
-            setAction(["Zaloguj", "Nie masz konta?", "Zarejestruj się"])
+            setAction(true)
         }
+    }
+
+    let hashPassword = (word) => {
+        var hashObj = new jsSHA("SHA-512", "TEXT");
+        hashObj.update(word);
+        return hashObj.getHash("HEX");
     }
 
     let takeAction = async (e) => {
         e.preventDefault()
-
-        var hashObj = new jsSHA("SHA-512", "TEXT");
-        hashObj.update(e.target.password.value );
-        var hash = hashObj.getHash("HEX");
         
         try {
-            const endpoint = action[0] === "Zaloguj" ? "login" : "register";
-        
+            const requestData = {
+                email: e.target.email.value,
+                hash: hashPassword(e.target.password.value),
+            };
+            
+            if (!action) {
+                requestData.username = e.target.username.value;
+                requestData.password2 = e.target.password2.value;
+            }
+            
+            const endpoint = action === true ? "api/account/login/" : "api/account/register/";
+            
             let response = await fetch(endpoint, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    "email": e.target.email.value,
-                    "hash": hash,
-                })
+                body: JSON.stringify(requestData),
             });
+            console.log(response, "tutaj--------")
+
         } catch (error) {
             console.error("Błąd: ", error)
         }
@@ -39,26 +56,73 @@ const LoginRegister = () => {
         return
     }
     return (
-        <div>
-        <form onSubmit={(e) => takeAction(e)}>
-            <label htmlFor='email'>Email:</label>
-            <input id='email' type='email'/>
+        <div className='Action'>
 
-            <label htmlFor='password'>Hasło:</label>
-            <input id='password' type='password'/>
-
-            <input type='submit' value={action[0]}/>
-        </form>
-        <form>
+            {action === true ? (
+                <div className='Action__card'>
+                    <form onSubmit={(e) => takeAction(e)} className='Action__card__form'>
+                        <div className='Action__card__form__group'>
+                            <label htmlFor='email'>Email:</label>
+                            <input id='email' type='email'/>
+                        </div>
             
-        </form>
-        <span>{action[1]}</span>
-        <button onClick={() => changeAction()}>{action[2]}</button>
-    </div>
-  )
+                        <div className='Action__card__form__group'>
+                            <label htmlFor='password'>Hasło:</label>
+                            <input id='password' type='password'/>
+                        </div>
+            
+                        <input className='Action__card__form__submit' type='submit' value={"Zaloguj"}/>
+                    </form>
+                    
+                    <hr></hr>
+
+                    <div className='Action__card__change'>
+                        <span>Nie masz konta?</span>
+                        <button onClick={(e) => changeAction(e)}>Zarejestruj się</button>
+                    </div>
+                </div>
+            ) : (
+                <div className='Action__card'>
+                    <form onSubmit={(e) => takeAction(e)} className='Action__card__form'>
+                        <div className='Action__card__form__group'>
+                            <label htmlFor='username'>Nazwa użytkownika:</label>
+                            <input id='username' type='text'/>
+                        </div>
+
+                        <div className='Action__card__form__group'>
+                            <label htmlFor='email'>Email:</label>
+                            <input id='email' type='email'/>
+                        </div>
+            
+                        <div className='Action__card__form__group'>
+                            <label htmlFor='password'>Hasło:</label>
+                            <input id='password' type='password'/>
+                        </div>
+            
+                        <div className='Action__card__form__group'>
+                            <label htmlFor='password2'>Potwierdź hasło:</label>
+                            <input id='password2' type='password'/>
+                        </div>
+            
+                        <input className='Action__card__form__submit' type='submit' value={"Zarejestruj"}/>
+                    </form>
+
+                    <hr></hr>
+
+                    <div className='Action__card__change'>
+                        <span>Masz konto?</span>
+                        <button onClick={(e) => changeAction(e)}>Zaloguj się</button>
+                    </div>
+                </div>
+            )}
+
+        </div>
+    )
+                
 }
 
 export default LoginRegister
+
 
 
 
