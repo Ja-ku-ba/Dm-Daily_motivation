@@ -10,12 +10,7 @@ const LoginRegister = () => {
             input.value = '';
         });
 
-        if (action === true){
-            setAction(false)
-        }
-        else {
-            setAction(true)
-        }
+        setAction(!action)
     }
 
     let hashPassword = (word) => {
@@ -30,15 +25,15 @@ const LoginRegister = () => {
         try {
             const requestData = {
                 email: e.target.email.value,
-                hash: hashPassword(e.target.password.value),
+                password: hashPassword(e.target.password.value),
             };
             
             if (!action) {
                 requestData.username = e.target.username.value;
-                requestData.password2 = e.target.password2.value;
+                requestData.password2 = hashPassword(e.target.password.value)
             }
             
-            const endpoint = action === true ? "api/account/login/" : "api/account/register/";
+            const endpoint = action === true ? "account/login/" : "account/register/";
             
             let response = await fetch(endpoint, {
                 method: "POST",
@@ -47,7 +42,7 @@ const LoginRegister = () => {
                 },
                 body: JSON.stringify(requestData),
             });
-            console.log(response, "tutaj--------")
+            console.log(await response.json(), "tutaj--------")
 
         } catch (error) {
             console.error("Błąd: ", error)
