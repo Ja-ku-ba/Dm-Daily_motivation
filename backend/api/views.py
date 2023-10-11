@@ -15,3 +15,4 @@ class Register(mixins.CreateModelMixin):
     def post(self, request):
         print("okej, ", "_"*10)
         pass
+    
