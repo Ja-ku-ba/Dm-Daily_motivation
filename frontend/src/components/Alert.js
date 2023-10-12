@@ -1,20 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Alert = ({message, color}) => {
-  return (
-    <div className='Alert'>
-      <div className='Alert__group'>
-        <p className='Alert__group__body'>
-          Alert {message}Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert
-          Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert
-          Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert
-          Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert
-          Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert 
-        </p>
-        <span className='Alert__group__close'>X</span>
+  let [open, setOpen] = useState(true)
+  if (open){
+    return (
+      <div className='Alert' style={{backgroundcolor: color} }>
+        <div className='Alert__group'>
+          <p className='Alert__group__body'>
+            Alert {message}Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert
+            Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert
+            Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert
+            Alert Alert Alert Alert Alert Alert Alert Al
+            ert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert
+            Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert 
+          </p>
+          <button onClick={() => setOpen(false)} className='Alert__group__close'>X</button>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default Alert

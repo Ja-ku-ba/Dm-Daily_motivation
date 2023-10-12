@@ -22,9 +22,12 @@
             right: 6%;
             font-size: 30px;
             cursor: pointer;
-
-            &:hover {
-                filter: invert(50%);
+            background-color: $elementsColor;
+            color: $backgroundColor;
+            border: none;
+            &:hover, :active {
+                color: invert($color: #3b3535);
+                background-color: $elementsColor;
             }
         }
 
