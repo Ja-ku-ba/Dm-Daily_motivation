@@ -17,24 +17,50 @@ export const AuthProvider = ({children}) => {
 
     const loginUser = async (e) => {
         e.preventDefault();
-        let response = await fetch("/token/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                'email':e.target.email.value, 
-                'password':e.target.password.value
+        try{
+            let response = await fetch("register/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    'email':e.target.email.value, 
+                    'password':e.target.password.value, 
+                    'username': e.target.username.value,
+                    'password2': e.target.password2.value
+                })
             })
-        })
-        let data = await response.json()
-        if (response.status === 200){
-            setAuthTokens(data)
-            setUser(jwtDecode(data.access))
-            localStorage.setItem('authTokens', JSON.stringify(data))
-            navigate("/")
-        } else {
-            alert("Coś poszło nie tak")
+            if (response.status !== 200){
+                console.log("Użytkwnik o podanych danych już istnieje")
+                return
+            }
+        }
+        catch(error) {
+            console.error("Błąd podczas rejestracji: ", error)
+        }
+        try{
+            let response = await fetch("token/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    'email':e.target.email.value, 
+                    'password':e.target.password.value
+                })
+            })
+            let data = await response.json()
+            if (response.status === 200){
+                setAuthTokens(data)
+                setUser(jwtDecode(data.access))
+                localStorage.setItem('authTokens', JSON.stringify(data))
+                navigate("/")
+            } else {
+                alert("Coś poszło nie tak")
+            }
+        }
+        catch(error){
+            console.error("Błąd podczas logowania: ", error)
         }
     }
 

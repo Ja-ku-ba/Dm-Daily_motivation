@@ -3,6 +3,8 @@ from django.shortcuts import render
 from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 from account.api.serialzers import RegistrationSerializer
 
@@ -21,4 +23,17 @@ def registraion_view(request):
         else:
             data = serializer.errors
         return Response(data)
-    
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['email'] = user.email
+        # ...
+
+        return token
+
+class MyTokentObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
