@@ -13,12 +13,14 @@ import Posts from "./pages/Posts";
 import LoginRegister from "./pages/LoginRegister";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import { AuthProvider } from "./context/AuthContext";
+import Alert from "./components/Alert";
 
 function App() {
     
     return (
       <div className="App">
         <NavBar/>
+        <Alert/>
         <Router>
           <AuthProvider>
             <Routes>

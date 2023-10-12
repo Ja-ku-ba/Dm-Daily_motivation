@@ -1,0 +1,39 @@
+@use "config" as *;
+
+.Alert {
+    top: 68px;
+    position: fixed;
+    height: fit-content;
+    padding: 15px 0;
+    width: 94%;
+    left: 3%;
+    margin: auto;
+    border-radius: 5px;
+    background-color: $elementsColor;
+
+    &__group {
+        width: 95%;
+        margin: 0 auto;
+        color: $backgroundColor;
+        display: flex;
+        align-items: flex-start;
+        &__close {
+            position: fixed;
+            right: 6%;
+            font-size: 30px;
+            cursor: pointer;
+
+            &:hover {
+                filter: invert(50%);
+            }
+        }
+
+        &__body {
+            width: 90%;
+            margin: 0;
+            font-size: 20px;
+        }
+        
+    }
+}
+
