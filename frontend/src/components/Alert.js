@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import AlertContext from '../context/AlertContext';
 
-const Alert = ({message, color}) => {
-  let [open, setOpen] = useState(true)
-  if (open){
+const Alert = () => {
+  let [alerStatus, setAlerStatus] = useContext(AlertContext)
+  if (alerStatus){
     return (
       <div className='Alert' style={{backgroundcolor: color} }>
         <div className='Alert__group'>
@@ -14,7 +15,7 @@ const Alert = ({message, color}) => {
             ert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert
             Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert 
           </p>
-          <button onClick={() => setOpen(false)} className='Alert__group__close'>X</button>
+          <button onClick={() => setAlerStatus(false)} className='Alert__group__close'>X</button>
         </div>
       </div>
     )
