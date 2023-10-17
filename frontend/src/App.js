@@ -13,16 +13,16 @@ import Posts from "./pages/Posts";
 import LoginRegister from "./pages/LoginRegister";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import { AuthProvider } from "./context/AuthContext";
-import Alert from "./components/Alert";
+import AlertProvider from "./components/Alert";
 
 function App() {
     
     return (
       <div className="App">
         <NavBar/>
-        <Alert/>
         <Router>
           <AuthProvider>
+          <AlertProvider>
             <Routes>
               <Route element={<PrivateRoutes/>}>
                 <Route path="/" element={<Home/>} exact/>
@@ -30,6 +30,7 @@ function App() {
               </Route>
               <Route path="/login" element={<LoginRegister/>}/>
             </Routes>
+            </AlertProvider>
             <div className="navigation--spaceFiller"></div>
             <Navigation/>
           </AuthProvider>

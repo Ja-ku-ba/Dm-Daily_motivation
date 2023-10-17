@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react'
-import AlertContext from '../context/AlertContext';
+import { AlertContext } from '../context/AlertContext';
 
 const Alert = () => {
-  let [alerStatus, setAlerStatus] = useContext(AlertContext)
+  const { setAlerStatus, alerStatus } = useContext(AlertContext)
   if (alerStatus){
     return (
       <div className='Alert' style={{backgroundcolor: color} }>
@@ -19,6 +19,8 @@ const Alert = () => {
         </div>
       </div>
     )
+  } else {
+    <h1>no nie</h1>
   }
 }
 

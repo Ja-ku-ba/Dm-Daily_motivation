@@ -1,8 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react'
 
-const AlertContext = createContext()
-export default AlertContext
 
+export const AlertContext = createContext(false)
 
 export const AlertProvider = () => {
     
