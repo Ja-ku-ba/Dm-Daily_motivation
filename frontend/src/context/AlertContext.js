@@ -1,21 +1,19 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState } from 'react'
 
 
-export const AlertContext = createContext(false)
+const AlertContext = createContext(false)
+export default AlertContext;
 
-export const AlertProvider = () => {
-    
-    let [alerStatus, setAlerStatus] = useState(false)
-    let contextData = {
-        alerStatus: alerStatus,
-        changeStatus: changeStatus
-    }
-    
-    let changeStatus = () => {
-        setAlerStatus(!alerStatus)
+export const AlertProvider = ({children}) => {    
+    let [alertStatus, setAlertStatus] = useState(false)
+
+    let exportContext = {
+        alertStatus: alertStatus,
+        setAlertStatus: setAlertStatus
     }
     return(
-        <AlertContext.Provider value={[alerStatus, setAlerStatus]}>
+        <AlertContext.Provider value={exportContext}>
+            {children}
         </AlertContext.Provider>
   )
 }

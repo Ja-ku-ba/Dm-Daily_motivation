@@ -13,26 +13,29 @@ import Posts from "./pages/Posts";
 import LoginRegister from "./pages/LoginRegister";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import { AuthProvider } from "./context/AuthContext";
-import AlertProvider from "./components/Alert";
+import { AlertProvider } from "./context/AlertContext";
+import Alert from "./components/Alert";
 
 function App() {
     
     return (
       <div className="App">
         <NavBar/>
+        <Alert/>
         <Router>
           <AuthProvider>
-          <AlertProvider>
-            <Routes>
-              <Route element={<PrivateRoutes/>}>
-                <Route path="/" element={<Home/>} exact/>
-                <Route path="/posts" element={<Posts/>}/>
-              </Route>
-              <Route path="/login" element={<LoginRegister/>}/>
-            </Routes>
-            </AlertProvider>
+            <AlertProvider>
+              <Alert/>
+              <Routes>
+                <Route element={<PrivateRoutes/>}>
+                  <Route path="/" element={<Home/>} exact/>
+                  <Route path="/posts" element={<Posts/>}/>
+                </Route>
+                <Route path="/login" element={<LoginRegister/>}/>
+              </Routes>
             <div className="navigation--spaceFiller"></div>
             <Navigation/>
+            </AlertProvider>
           </AuthProvider>
         </Router>
         

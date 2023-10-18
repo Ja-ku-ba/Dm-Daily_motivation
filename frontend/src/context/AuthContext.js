@@ -8,11 +8,10 @@ export default AuthContext
 
 
 export const AuthProvider = ({children}) => {
-    
+    console.log("OOOOOOOOOOOOOO")
     let [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     let [user, setUser] = useState(() => localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null)
     let [loading, steLoading] = useState(true)
-
     let navigate = useNavigate();
 
     const loginUser = async (e) => {
