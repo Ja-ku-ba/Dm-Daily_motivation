@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -20,8 +19,6 @@ def registraion_view(request):
             data['response'] = "Sucefully registered a new user"
             data["email"] = account.email
             data["username"] = account.username
-        else:
-            data = serializer.errors
         return Response(data)
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):

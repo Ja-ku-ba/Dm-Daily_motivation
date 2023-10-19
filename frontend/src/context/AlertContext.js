@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 
 
-const AlertContext = createContext(false)
+const AlertContext = createContext(true)
 export default AlertContext;
 
 export const AlertProvider = ({children}) => {    
