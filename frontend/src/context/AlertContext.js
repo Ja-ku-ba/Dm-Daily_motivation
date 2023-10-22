@@ -7,7 +7,6 @@ export default AlertContext;
 export const AlertProvider = ({ children }) => {
     const [alertStatus, setAlertStatus] = useState(false);
     const [params, setParams] = useState({color: "", body: ""});
-    console.log(params)
     
     const exportContext = {
         alertStatus: alertStatus,

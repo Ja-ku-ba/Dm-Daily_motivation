@@ -2,10 +2,8 @@ import React, { useState, useContext } from 'react'
 import AuthContext from '../context/AuthContext';
 
 const LoginRegister = () => {
-    const { loginUser } = useContext(AuthContext);
+    const { action, setAction, loginUser } = useContext(AuthContext);
     
-    // action = true, means login, false is register
-    let [action, setAction] = useState(false)            
     let changeAction = (e) => {
         const inputElements = document.querySelectorAll('input');
         inputElements.forEach((input) => {

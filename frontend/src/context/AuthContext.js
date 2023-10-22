@@ -15,14 +15,14 @@ export const AuthProvider = ({children}) => {
     
     let [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     let [user, setUser] = useState(() => localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null)
-    let [acction, setAcction] = useState(false) // false means, that user wants to log in
+    let [action, setAction] = useState(false) // false means, that user wants to log in
     let [loading, steLoading] = useState(true)
     
     let navigate = useNavigate();
 
     const loginUser = async (e) => {
         e.preventDefault();
-        if (acction){
+        if (action){
             try{
                 let response = await fetch("token/", {
                     method: "POST",
@@ -41,11 +41,13 @@ export const AuthProvider = ({children}) => {
                     localStorage.setItem('authTokens', JSON.stringify(data))
                     navigate("/")
                 } else {
-                    alert("Coś poszło nie tak")
+                    setParams(messages["register"]['invalidCredentials']);
+                   setAlertStatus(true)
                 }
             }
             catch(error){
-                console.error("Błąd podczas logowania")
+                setParams(messages["register"]['invalidCredentials']);
+                setAlertStatus(true)
             }
         
         }
@@ -86,7 +88,6 @@ export const AuthProvider = ({children}) => {
     }
     
     let updateToken = async () => {
-        console.log("Weszło")
         let response = await fetch("/token/refresh/", {
             method: "POST",
             headers: {
@@ -121,6 +122,8 @@ export const AuthProvider = ({children}) => {
         loginUser: loginUser,
         logoutUser: logoutUser,
         user: user,
+        action: action,
+        setAction: setAction
     }
     return(
     <AuthContext.Provider value={contextData}>

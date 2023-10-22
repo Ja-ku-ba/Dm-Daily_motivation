@@ -3,7 +3,6 @@ import AlertContext from '../context/AlertContext';
 
 const Alert = ({color, body}) => {
   const { alertStatus, setAlertStatus } = useContext(AlertContext);
-  console.log(color, body, "---------------========")
   if (alertStatus) {
     return (
       <div className='Alert' style={{backgroundColor: color}}>
