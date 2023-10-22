@@ -4,69 +4,79 @@ import React, { createContext, useState, useEffect, useContext } from 'react'
 import { useNavigate } from "react-router-dom";
 
 import AlertContext from "../context/AlertContext"
-
 const AuthContext = createContext()
 export default AuthContext
 
 
 export const AuthProvider = ({children}) => {
-    let alertStatus = useContext(AlertContext)
+    let { params, setParams, setAlertStatus } = useContext(AlertContext)
     
     let [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     let [user, setUser] = useState(() => localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null)
+    let [acction, setAcction] = useState(false) // false means, that user wants to log in
     let [loading, steLoading] = useState(true)
     
     let navigate = useNavigate();
 
     const loginUser = async (e) => {
         e.preventDefault();
-        console.log(alertStatus, "kurwaaaaaa")
-        try{
-            let response = await fetch("register/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    'email':e.target.emailr.value, 
-                    'password':e.target.passwordr.value, 
-                    'username': e.target.usernamer.value,
-                    'password2': e.target.password2r.value
+        if (acction){
+            try{
+                let response = await fetch("token/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        'email':e.target.email.value, 
+                        'password':e.target.password.value
+                    })
                 })
-            })
-            if (response.status !== 200){
-                console.log("Użytkwnik o podanych danych już istnieje")
+                let data = await response.json()
+                if (response.status === 200){
+                    setAuthTokens(data)
+                    setUser(jwtDecode(data.access))
+                    localStorage.setItem('authTokens', JSON.stringify(data))
+                    navigate("/")
+                } else {
+                    alert("Coś poszło nie tak")
+                }
             }
-            return
+            catch(error){
+                console.error("Błąd podczas logowania")
+            }
+        
         }
-        catch(error) {
-            console.error("Błąd podczas rejestracji: ", error)
-        }
-        try{
-            let response = await fetch("token/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    'email':e.target.email.value, 
-                    'password':e.target.password.value
+        else {
+            try{
+                let response = await fetch("register/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        'email':e.target.emailr.value, 
+                        'password':e.target.passwordr.value, 
+                        'username': e.target.usernamer.value,
+                        'password2': e.target.password2r.value
+                    })
                 })
-            })
-            let data = await response.json()
-            if (response.status === 200){
-                setAuthTokens(data)
-                setUser(jwtDecode(data.access))
-                localStorage.setItem('authTokens', JSON.stringify(data))
-                navigate("/")
-            } else {
-                alert("Coś poszło nie tak")
+                if (response.status !== 200){
+                    setParams({ color: "#00FF00", body: "To jest treść alertu" });
+                    console.log(params)
+                    setAlertStatus(true);
+                }
+                return
             }
-        }
-        catch(error){
-            console.error("Błąd podczas logowania: ", error)
+            catch(error) {
+                setParams({ color: "#00FF00", body: "To jest treść alertu" });
+                console.log(params)
+                setAlertStatus(true);
+                console.error("Błąd podczas rejestracji")
+            }
         }
     }
+    
 
     let logoutUser = () => {
         setAuthTokens(null)

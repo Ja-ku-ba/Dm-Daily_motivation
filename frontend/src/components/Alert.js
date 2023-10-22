@@ -1,23 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import AlertContext from '../context/AlertContext';
 
-const Alert = () => {
-  const { alertStatus, setAlertStatus } = useContext(AlertContext)
-    
-  if (alertStatus){
+const Alert = ({color, body}) => {
+  const { alertStatus, setAlertStatus } = useContext(AlertContext);
+  console.log(color, body)
+  if (alertStatus) {
     return (
-      <div className='Alert' style={{backgroundcolor: "#333333"} }>
+      <div className='Alert'>
         <div className='Alert__group'>
           <p className='Alert__group__body'>
-            Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert
-            Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert
-            Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert Alert
+            {body}
           </p>
           <button onClick={() => setAlertStatus(false)} className='Alert__group__close'>X</button>
         </div>
       </div>
-    )
+    );
   }
-}
 
-export default Alert
+  return null; // Dodaj to, aby obsłużyć przypadek, gdy alertStatus jest false
+};
+
+export default Alert;
