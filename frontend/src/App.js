@@ -14,18 +14,15 @@ import LoginRegister from "./pages/LoginRegister";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import { AuthProvider } from "./context/AuthContext";
 import { AlertProvider } from "./context/AlertContext";
-import Alert from "./components/Alert";
 
 function App() {
     
     return (
       <div className="App">
         <NavBar/>
-        <Alert/>
-        <Router>
+          <Router>
           <AuthProvider>
             <AlertProvider>
-              <Alert/>
               <Routes>
                 <Route element={<PrivateRoutes/>}>
                   <Route path="/" element={<Home/>} exact/>

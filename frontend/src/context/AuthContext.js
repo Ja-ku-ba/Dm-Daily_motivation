@@ -11,11 +11,11 @@ export default AuthContext
 
 
 export const AuthProvider = ({children}) => {
-    const { setAlertStatus } = useContext(AlertContext);
+    const { alertStatus, setAlertStatus, setParams, params } = useContext(AlertContext);
     
     let [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     let [user, setUser] = useState(() => localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null)
-    let [loading, steLoading] = useState(true)
+
     let navigate = useNavigate();
 
     const loginUser = async (e) => {
@@ -38,10 +38,23 @@ export const AuthProvider = ({children}) => {
                 return
             }
             else {
-                setAlertStatus(true)
+            console.log(alertStatus, params)
+            setAlertStatus(true)
+            setParams("red", "niedowiaryzetodziala")
+            console.log(alertStatus, params)
+            console.log(alertStatus, params)
+            console.error("Błąd podczas logowania: ", error)
+            console.log(alertStatus, params)
             }
         }
         catch(error) {
+            console.log(alertStatus, params)
+            setAlertStatus(true)
+            setParams("red", "niedowiaryzetodziala")
+            console.log(alertStatus, params)
+            console.log(alertStatus, params)
+            console.error("Błąd podczas logowania: ", error)
+            console.log(alertStatus, params)
             console.error("Błąd podczas rejestracji: ", error)
         }
         try{
@@ -66,7 +79,13 @@ export const AuthProvider = ({children}) => {
             }
         }
         catch(error){
+            console.log(alertStatus, params)
+            setParams("red", "niedowiaryzetodziala")
+            console.log(alertStatus, params)
+            setAlertStatus(true)
+            console.log(alertStatus, params)
             console.error("Błąd podczas logowania: ", error)
+            console.log(alertStatus, params)
         }
     }
 
@@ -107,7 +126,7 @@ export const AuthProvider = ({children}) => {
                 }
             }, timeDelay)
             return () => clearInterval(interval)
-        }, [authTokens, loading])
+        }, [authTokens])
     
     let contextData = {
         loginUser: loginUser,

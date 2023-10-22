@@ -1,20 +1,17 @@
 import React, { useContext } from 'react'
 import AlertContext from '../context/AlertContext';
 
-const Alert = ({body, color}) => {
-  const { alertStatus, setAlertStatus } = useContext(AlertContext)
-  let print = () => {
-    console.log(alertStatus, setAlertStatus)
-    setAlertStatus(false)
-  }
+const Alert = () => {
+  const { alertStatus, setAlertStatus, params } = useContext(AlertContext)
+  console.log(params, "------")
   if (alertStatus){
     return (
-      <div className='Alert' style={{backgroundcolor: color} }>
+      <div className='Alert' style={{backgroundcolor: params.color} }>
         <div className='Alert__group'>
           <p className='Alert__group__body'>
-            {body}
+            {params.body}
           </p>
-          <button onClick={() => print()} className='Alert__group__close'>X</button>
+          <button onClick={() => setAlertStatus(false)} className='Alert__group__close'>X</button>
         </div>
       </div>
     )

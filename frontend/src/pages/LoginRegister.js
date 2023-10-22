@@ -1,19 +1,21 @@
 import React, { useState, useContext } from 'react'
 import AuthContext from '../context/AuthContext';
+import AlertContext from '../context/AlertContext';
 
 const LoginRegister = () => {
     const { loginUser } = useContext(AuthContext);
+    const { alertStatus, setAlertStatus } = useContext(AlertContext)
     
     // action = true, means login, false is register
-    let [action, setAction] = useState(true)            
+    let [action, setAction] = useState(false)            
     let changeAction = (e) => {
-        const inputElements = document.querySelectorAll('input');
+        const inputElements = document.querySelectorAll('input')
         inputElements.forEach((input) => {
-            input.value = '';
-        });
-
+            input.value = ''
+        })
         setAction(!action)
     }
+
     return (
         <div className='Action'>
 
