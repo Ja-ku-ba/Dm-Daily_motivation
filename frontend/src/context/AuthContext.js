@@ -4,6 +4,8 @@ import React, { createContext, useState, useEffect, useContext } from 'react'
 import { useNavigate } from "react-router-dom";
 
 import AlertContext from "../context/AlertContext"
+import messages from "../utils/Messages"
+
 const AuthContext = createContext()
 export default AuthContext
 
@@ -62,15 +64,13 @@ export const AuthProvider = ({children}) => {
                     })
                 })
                 if (response.status !== 200){
-                    setParams({ color: "#00FF00", body: "To jest treść alertu" });
-                    console.log(params)
+                    setParams(messages["register"]['exists']);
                     setAlertStatus(true);
                 }
                 return
             }
             catch(error) {
-                setParams({ color: "#00FF00", body: "To jest treść alertu" });
-                console.log(params)
+                setParams(messages["register"]['exists']);
                 setAlertStatus(true);
                 console.error("Błąd podczas rejestracji")
             }
