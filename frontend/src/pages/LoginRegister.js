@@ -5,7 +5,7 @@ const LoginRegister = () => {
     const { loginUser } = useContext(AuthContext);
     
     // action = true, means login, false is register
-    let [action, setAction] = useState(true)            
+    let [action, setAction] = useState(false)            
     let changeAction = (e) => {
         const inputElements = document.querySelectorAll('input');
         inputElements.forEach((input) => {
@@ -44,23 +44,23 @@ const LoginRegister = () => {
                 <div className='Action__card'>
                     <form onSubmit={loginUser} className='Action__card__form'>
                         <div className='Action__card__form__group'>
-                            <label htmlFor='username'>Nazwa użytkownika:</label>
-                            <input id='username' type='text'/>
+                            <label htmlFor='usernamer'>Nazwa użytkownika:</label>
+                            <input id='usernamer' type='text'/>
                         </div>
 
                         <div className='Action__card__form__group'>
-                            <label htmlFor='email'>Email:</label>
-                            <input id='email' type='email'/>
+                            <label htmlFor='emailr'>Email:</label>
+                            <input id='emailr' type='email'/>
                         </div>
             
                         <div className='Action__card__form__group'>
-                            <label htmlFor='password'>Hasło:</label>
-                            <input id='password' type='password'/>
+                            <label htmlFor='passwordr'>Hasło:</label>
+                            <input id='passwordr' type='password'/>
                         </div>
             
                         <div className='Action__card__form__group'>
-                            <label htmlFor='password2'>Potwierdź hasło:</label>
-                            <input id='password2' type='password'/>
+                            <label htmlFor='password2r'>Potwierdź hasło:</label>
+                            <input id='password2r' type='password'/>
                         </div>
             
                         <input className='Action__card__form__submit' type='submit' value={"Zarejestruj"}/>

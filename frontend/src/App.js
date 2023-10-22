@@ -23,8 +23,8 @@ function App() {
         <NavBar/>
         <Alert/>
         <Router>
-          <AuthProvider>
-            <AlertProvider>
+          <AlertProvider>
+            <AuthProvider>
               <Alert/>
               <Routes>
                 <Route element={<PrivateRoutes/>}>
@@ -35,8 +35,8 @@ function App() {
               </Routes>
             <div className="navigation--spaceFiller"></div>
             <Navigation/>
-            </AlertProvider>
-          </AuthProvider>
+            </AuthProvider>
+          </AlertProvider>
         </Router>
         
       </div>

@@ -1,21 +1,26 @@
 import jwtDecode from 'jwt-decode'
 
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useContext } from 'react'
 import { useNavigate } from "react-router-dom";
+
+import AlertContext from "../context/AlertContext"
 
 const AuthContext = createContext()
 export default AuthContext
 
 
 export const AuthProvider = ({children}) => {
-    console.log("OOOOOOOOOOOOOO")
+    let alertStatus = useContext(AlertContext)
+    
     let [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     let [user, setUser] = useState(() => localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null)
     let [loading, steLoading] = useState(true)
+    
     let navigate = useNavigate();
 
     const loginUser = async (e) => {
         e.preventDefault();
+        console.log(alertStatus, "kurwaaaaaa")
         try{
             let response = await fetch("register/", {
                 method: "POST",
@@ -23,16 +28,16 @@ export const AuthProvider = ({children}) => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    'email':e.target.email.value, 
-                    'password':e.target.password.value, 
-                    'username': e.target.username.value,
-                    'password2': e.target.password2.value
+                    'email':e.target.emailr.value, 
+                    'password':e.target.passwordr.value, 
+                    'username': e.target.usernamer.value,
+                    'password2': e.target.password2r.value
                 })
             })
             if (response.status !== 200){
                 console.log("Użytkwnik o podanych danych już istnieje")
-                return
             }
+            return
         }
         catch(error) {
             console.error("Błąd podczas rejestracji: ", error)
