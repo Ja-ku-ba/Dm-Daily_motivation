@@ -11,6 +11,10 @@ import {
 import Home from "./pages/Home";
 import Posts from "./pages/Posts";
 import LoginRegister from "./pages/LoginRegister";
+import PrivateRoutes from "./utils/PrivateRoutes";
+import { AuthProvider } from "./context/AuthContext";
+import { AlertProvider } from "./context/AlertContext";
+import Alert from "./components/Alert";
 
 function App() {
     
@@ -18,13 +22,20 @@ function App() {
       <div className="App">
         <NavBar/>
         <Router>
-          <Routes>
-            <Route path="/" element={<Home/>} exact/>
-            <Route path="/posts" element={<Posts/>} exact/>
-            <Route path="/login" element={<LoginRegister/>} exact/>
-          </Routes>
-          <div className="navigation--spaceFiller"></div>
-          <Navigation/>
+          <AlertProvider>
+            <AuthProvider>
+              <Alert/>
+              <Routes>
+                <Route element={<PrivateRoutes/>}>
+                  <Route path="/" element={<Home/>} exact/>
+                  <Route path="/posts" element={<Posts/>}/>
+                </Route>
+                <Route path="/login" element={<LoginRegister/>}/>
+              </Routes>
+            <div className="navigation--spaceFiller"></div>
+            <Navigation/>
+            </AuthProvider>
+          </AlertProvider>
         </Router>
         
       </div>

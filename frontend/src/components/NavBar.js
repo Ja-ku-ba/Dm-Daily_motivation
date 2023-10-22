@@ -8,7 +8,7 @@ const NavBar = () => {
         <ul className='NavBar__elements'>
             <li className='NavBar__elements--logo'>Logo</li>
             <li className='NavBar__elements--hamburger'>
-              <button class="btn btn-4 btn-sep icon-send" onClick={() => setActive(!active)}>
+              <button className="btn btn-4 btn-sep icon-send" onClick={() => setActive(!active)}>
                 <svg width={"48px"} height={"48px"}/>
               </button>
             </li>
