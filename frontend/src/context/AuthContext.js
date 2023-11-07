@@ -19,63 +19,77 @@ export const AuthProvider = ({children}) => {
     let [loading, steLoading] = useState(true)
     
     let navigate = useNavigate();
+    
+    let login = async (e) =>  {
+        try{
+            let response = await fetch("token/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    'email':e.target.email.value ? e.target.email.value : e.email, 
+                    'password':e.target.password.value ? e.target.password.value : e.password
+                })
+            })
+            console.log(response.status)
+            if (response.status === 200){
+                let data = await response.json()
+                setAuthTokens(data)
+                setUser(jwtDecode(data.access))
+                localStorage.setItem('authTokens', JSON.stringify(data))
+                navigate("/")
+            } else {
+                setParams(messages["register"]['invalidCredentials']);
+               setAlertStatus(true)
+            }
+            return            
+        }
+        catch(error){
+            setParams(messages["register"]['invalidCredentials']);
+            setAlertStatus(true)
+        }
+    }
+    
+    let register = async (e) => {
+        try{
+            let response = await fetch("register/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    'email':e.target.emailr.value, 
+                    'password':e.target.passwordr.value, 
+                    'username': e.target.usernamer.value,
+                    'password2': e.target.password2r.value
+                })
+            })
+            console.log(response.status)
+            if (response.status !== 200){
+                setParams(messages["register"]['exists']);
+                setAlertStatus(true);
+            }
+            else{
+                console.log(1)
+                login(e={"email":e.target.passwordr.value, "password":e.target.passwordr.value})
+            }
+            return
+        }
+        catch(error) {
+            setParams(messages["register"]['exists']);
+            setAlertStatus(true);
+            console.error("Błąd podczas rejestracji")
+        }
+    }
 
     const loginUser = async (e) => {
         e.preventDefault();
         if (action){
-            try{
-                let response = await fetch("token/", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        'email':e.target.email.value, 
-                        'password':e.target.password.value
-                    })
-                })
-                let data = await response.json()
-                if (response.status === 200){
-                    setAuthTokens(data)
-                    setUser(jwtDecode(data.access))
-                    localStorage.setItem('authTokens', JSON.stringify(data))
-                    navigate("/")
-                } else {
-                    setParams(messages["register"]['invalidCredentials']);
-                   setAlertStatus(true)
-                }
-            }
-            catch(error){
-                setParams(messages["register"]['invalidCredentials']);
-                setAlertStatus(true)
-            }
-        
+            login(e)
         }
         else {
-            try{
-                let response = await fetch("register/", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        'email':e.target.emailr.value, 
-                        'password':e.target.passwordr.value, 
-                        'username': e.target.usernamer.value,
-                        'password2': e.target.password2r.value
-                    })
-                })
-                if (response.status !== 200){
-                    setParams(messages["register"]['exists']);
-                    setAlertStatus(true);
-                }
-                return
-            }
-            catch(error) {
-                setParams(messages["register"]['exists']);
-                setAlertStatus(true);
-                console.error("Błąd podczas rejestracji")
-            }
+            register(e)
         }
     }
     
@@ -131,3 +145,4 @@ export const AuthProvider = ({children}) => {
     </AuthContext.Provider>
   )
 }
+
