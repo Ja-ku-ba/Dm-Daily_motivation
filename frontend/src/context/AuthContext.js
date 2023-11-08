@@ -15,15 +15,14 @@ export const AuthProvider = ({children}) => {
     
     let [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     let [user, setUser] = useState(() => localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null)
-    let [action, setAction] = useState(false) // false means, that user wants to log in
+    let [action, setAction] = useState('l') // false means, that user wants to log in
     let [loading, steLoading] = useState(true)
     
     let navigate = useNavigate();
-
-    const loginUser = async (e) => {
-        e.preventDefault();
-        if (action){
-            try{
+    
+    let login = async (e) =>  {
+        try{
+            if (e.target.email.value){
                 let response = await fetch("token/", {
                     method: "POST",
                     headers: {
@@ -34,48 +33,58 @@ export const AuthProvider = ({children}) => {
                         'password':e.target.password.value
                     })
                 })
+            if (response.status === 200){
                 let data = await response.json()
-                if (response.status === 200){
-                    setAuthTokens(data)
-                    setUser(jwtDecode(data.access))
-                    localStorage.setItem('authTokens', JSON.stringify(data))
-                    navigate("/")
-                } else {
-                    setParams(messages["register"]['invalidCredentials']);
-                   setAlertStatus(true)
-                }
-            }
-            catch(error){
+                setAuthTokens(data)
+                setUser(jwtDecode(data.access))
+                localStorage.setItem('authTokens', JSON.stringify(data))
+                navigate("/")
+            } else {
                 setParams(messages["register"]['invalidCredentials']);
                 setAlertStatus(true)
             }
-        
-        }
-        else {
-            try{
-                let response = await fetch("register/", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        'email':e.target.emailr.value, 
-                        'password':e.target.passwordr.value, 
-                        'username': e.target.usernamer.value,
-                        'password2': e.target.password2r.value
-                    })
-                })
-                if (response.status !== 200){
-                    setParams(messages["register"]['exists']);
-                    setAlertStatus(true);
-                }
-                return
+            return            
             }
-            catch(error) {
+        }
+        catch(error){
+            setParams(messages["register"]['invalidCredentials']);
+            setAlertStatus(true)
+        }
+    }
+    
+    let register = async (e) => {
+        try{
+            let response = await fetch("register/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    'email':e.target.email.value, 
+                    'password':e.target.password.value, 
+                    'username': e.target.username.value,
+                    'password2': e.target.password2.value
+                })
+            })
+            if (response.status !== 200){
                 setParams(messages["register"]['exists']);
                 setAlertStatus(true);
-                console.error("Błąd podczas rejestracji")
             }
+        }
+        catch(error) {
+            setParams(messages["register"]['exists']);
+            setAlertStatus(true);
+        }
+    }
+
+    const loginUser = async (e) => {
+        e.preventDefault();
+        if (action === 'r'){
+            await register(e)
+            await login(e)
+        }
+        else {
+            await login(e)
         }
     }
     
@@ -131,3 +140,4 @@ export const AuthProvider = ({children}) => {
     </AuthContext.Provider>
   )
 }
+
