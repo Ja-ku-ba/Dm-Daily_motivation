@@ -15,24 +15,24 @@ export const AuthProvider = ({children}) => {
     
     let [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     let [user, setUser] = useState(() => localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null)
-    let [action, setAction] = useState(false) // false means, that user wants to log in
+    let [action, setAction] = useState('l') // false means, that user wants to log in
     let [loading, steLoading] = useState(true)
     
     let navigate = useNavigate();
     
     let login = async (e) =>  {
         try{
-            let response = await fetch("token/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    'email':e.target.email.value ? e.target.email.value : e.email, 
-                    'password':e.target.password.value ? e.target.password.value : e.password
+            if (e.target.email.value){
+                let response = await fetch("token/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        'email':e.target.email.value, 
+                        'password':e.target.password.value
+                    })
                 })
-            })
-            console.log(response.status)
             if (response.status === 200){
                 let data = await response.json()
                 setAuthTokens(data)
@@ -41,9 +41,10 @@ export const AuthProvider = ({children}) => {
                 navigate("/")
             } else {
                 setParams(messages["register"]['invalidCredentials']);
-               setAlertStatus(true)
+                setAlertStatus(true)
             }
             return            
+            }
         }
         catch(error){
             setParams(messages["register"]['invalidCredentials']);
@@ -59,37 +60,31 @@ export const AuthProvider = ({children}) => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    'email':e.target.emailr.value, 
-                    'password':e.target.passwordr.value, 
-                    'username': e.target.usernamer.value,
-                    'password2': e.target.password2r.value
+                    'email':e.target.email.value, 
+                    'password':e.target.password.value, 
+                    'username': e.target.username.value,
+                    'password2': e.target.password2.value
                 })
             })
-            console.log(response.status)
             if (response.status !== 200){
                 setParams(messages["register"]['exists']);
                 setAlertStatus(true);
             }
-            else{
-                console.log(1)
-                login(e={"email":e.target.passwordr.value, "password":e.target.passwordr.value})
-            }
-            return
         }
         catch(error) {
             setParams(messages["register"]['exists']);
             setAlertStatus(true);
-            console.error("Błąd podczas rejestracji")
         }
     }
 
     const loginUser = async (e) => {
         e.preventDefault();
-        if (action){
-            login(e)
+        if (action === 'r'){
+            await register(e)
+            await login(e)
         }
         else {
-            register(e)
+            await login(e)
         }
     }
     
