@@ -1,61 +1,29 @@
-import React, { useState } from 'react'
-import jsSHA from 'jssha';
+import React, { useState, useContext } from 'react'
+import AuthContext from '../context/AuthContext';
 
 const LoginRegister = () => {
-    // action = true, means login, false is register
-    let [action, setAction] = useState(true)            
-    let changeAction = (e) => {
+    const { action, setAction, loginUser } = useContext(AuthContext);
+
+    let changeAction = () => {
+        // clears inputs, othersie chrome autofiil password in email field
         const inputElements = document.querySelectorAll('input');
         inputElements.forEach((input) => {
             input.value = '';
         });
-
-        setAction(!action)
-    }
-
-    let hashPassword = (word) => {
-        var hashObj = new jsSHA("SHA-512", "TEXT");
-        hashObj.update(word);
-        return hashObj.getHash("HEX");
-    }
-
-    let takeAction = async (e) => {
-        e.preventDefault()
         
-        try {
-            const requestData = {
-                email: e.target.email.value,
-                password: hashPassword(e.target.password.value),
-            };
-            
-            if (!action) {
-                requestData.username = e.target.username.value;
-                requestData.password2 = hashPassword(e.target.password.value)
-            }
-            
-            const endpoint = action === true ? "account/login/" : "account/register/";
-            
-            let response = await fetch(endpoint, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(requestData),
-            });
-            console.log(await response.json(), "tutaj--------")
-
-        } catch (error) {
-            console.error("Błąd: ", error)
+        if (action === 'l'){
+            setAction('r')
         }
-        
-        return
+        else {
+            setAction('l')
+        }
     }
     return (
         <div className='Action'>
 
-            {action === true ? (
+            {action === 'l' ? (
                 <div className='Action__card'>
-                    <form onSubmit={(e) => takeAction(e)} className='Action__card__form'>
+                    <form onSubmit={loginUser} className='Action__card__form'>
                         <div className='Action__card__form__group'>
                             <label htmlFor='email'>Email:</label>
                             <input id='email' type='email'/>
@@ -73,12 +41,12 @@ const LoginRegister = () => {
 
                     <div className='Action__card__change'>
                         <span>Nie masz konta?</span>
-                        <button onClick={(e) => changeAction(e)}>Zarejestruj się</button>
+                        <button type='button' onClick={() => changeAction()}>Zarejestruj się</button>
                     </div>
                 </div>
             ) : (
                 <div className='Action__card'>
-                    <form onSubmit={(e) => takeAction(e)} className='Action__card__form'>
+                    <form onSubmit={loginUser} className='Action__card__form'>
                         <div className='Action__card__form__group'>
                             <label htmlFor='username'>Nazwa użytkownika:</label>
                             <input id='username' type='text'/>
@@ -106,7 +74,7 @@ const LoginRegister = () => {
 
                     <div className='Action__card__change'>
                         <span>Masz konto?</span>
-                        <button onClick={(e) => changeAction(e)}>Zaloguj się</button>
+                        <button type='button' onClick={() => changeAction()}>Zaloguj się</button>
                     </div>
                 </div>
             )}

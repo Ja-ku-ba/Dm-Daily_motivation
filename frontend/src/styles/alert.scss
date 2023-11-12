@@ -1,0 +1,42 @@
+@use "config" as *;
+
+.Alert {
+    top: 68px;
+    position: fixed;
+    height: fit-content;
+    padding: 15px 0;
+    width: 94%;
+    left: 3%;
+    margin: auto;
+    border-radius: 5px;
+    min-height: 60px;
+
+    &__group {
+        width: 95%;
+        margin: 0 auto;
+        color: $backgroundColor;
+        display: flex;
+        align-items: flex-start;
+        &__close {
+            position: fixed;
+            right: 6%;
+            font-size: 30px;
+            cursor: pointer;
+            background-color: $elementsColor;
+            color: $backgroundColor;
+            border: none;
+            &:hover, :active {
+                color: invert($color: #3b3535);
+                background-color: $elementsColor;
+            }
+        }
+
+        &__body {
+            width: 90%;
+            margin: 0;
+            font-size: 20px;
+        }
+        
+    }
+}
+
