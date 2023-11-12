@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import jwt_decode from 'jwt-decode';
 
 import AuthContext from '../context/AuthContext'
 
@@ -28,9 +29,9 @@ const NavBar = () => {
         </ul>
         {active ?  
         <div className='NavBar__Hamburger'>
-          <ul className='NavBar__Hamburger--list'>
+          <ul className='NavBar__Hamburger--list' onClick={() => setActive(false)}>
             {/* <li><Link>{ user }</Link></li> */}
-            <li>1. option</li>
+            <li><Link to={`/profile/${user.username}`}>{user.username}</Link></li>
             <li>1. option</li>
             <li>1. option</li>
             <li><butotn onClick={() => byeBye()}>Wyloguj</butotn></li>
