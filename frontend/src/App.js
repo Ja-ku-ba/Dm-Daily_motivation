@@ -15,20 +15,22 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 import { AuthProvider } from "./context/AuthContext";
 import { AlertProvider } from "./context/AlertContext";
 import Alert from "./components/Alert";
+import Profile from "./pages/Profile";
 
 function App() {
     
     return (
       <div className="App">
-        <NavBar/>
         <Router>
           <AlertProvider>
             <AuthProvider>
+              <NavBar/>
               <Alert/>
               <Routes>
                 <Route element={<PrivateRoutes/>}>
                   <Route path="/" element={<Home/>} exact/>
                   <Route path="/posts" element={<Posts/>}/>
+                  <Route path="/profile/:username" element={<Profile/>}/>
                 </Route>
                 <Route path="/login" element={<LoginRegister/>}/>
               </Routes>

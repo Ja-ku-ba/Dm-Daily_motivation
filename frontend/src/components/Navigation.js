@@ -9,7 +9,6 @@ import calendar from "../assets/icons/calendar.svg"
 import settings from "../assets/icons/settings.svg"
 
 const Navigation = () => {
-  const { logoutUser } = useContext(AuthContext);
     
   return (
     <div className='Navigation'>
@@ -28,14 +27,10 @@ const Navigation = () => {
           <img width={"35px"} height={"35px"} src={friends}/>
         </li>
         <li className='Navigation__panel__ele'>
-          <button type='button' onClick={logoutUser}>
           <img width={"35px"} height={"35px"} src={calendar}/>
-          </button>
         </li>
         <li className='Navigation__panel__ele'>
-          <Link to={"/login"}>
-            <img width={"35px"} height={"35px"} src={settings}/>
-          </Link>
+          <img width={"35px"} height={"35px"} src={settings}/>
         </li>
         </ul>
     </div>
