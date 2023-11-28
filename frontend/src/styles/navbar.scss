@@ -18,7 +18,7 @@
         &--hamburger {
             width: 48px;
             height: 48px;
-
+            
             & svg {
                 background-image: url(../assets/icons/hamburger.svg);
                 filter: invert(99%) sepia(1%) saturate(1581%) hue-rotate(186deg) brightness(101%) contrast(86%);
@@ -64,6 +64,8 @@
         // height: 100vh;
         z-index: 2;
         background-color: $navColors;
+        border-top: 1px solid $backgroundColor;
+
         &--list {
             display: flex;
             flex-direction: column;

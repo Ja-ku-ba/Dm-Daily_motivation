@@ -1,0 +1,18 @@
+@use "config" as *;
+
+.Bio {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    margin: auto;
+
+    &__profilePicture {
+        background-color: $backgroundColor;
+        border-radius: 5px;
+    }
+
+    &__additionalInfos{
+        list-style: none;
+        color: $backgroundColor;
+    }
+}

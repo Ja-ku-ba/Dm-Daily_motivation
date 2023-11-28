@@ -1,0 +1,13 @@
+@use "config" as *;
+
+.Profile {
+    &__header {
+        width: 95%;
+        margin: auto;
+        background-color: $cardColor;
+        border-radius: 5px;
+        margin-top: 15px;
+        padding: 10px 0;
+        height: auto;
+    }
+}

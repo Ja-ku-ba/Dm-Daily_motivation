@@ -1,21 +1,19 @@
 import React from 'react'
+import Tracker from "../components/Tracker";
+import Posts from "../components/Post";
+import Bio from "../components/Bio";
 
 const Profile = () => {
   return (
-    <div>
-        <div className='Header'>
-            <img alt='profilePicture'></img>
-            <li>
-                <ul>Friends: 123</ul>
-                <ul>Goals achived last month: 19</ul>
-                
-            </li>
+    <div className='Profile'>
+        <div className='Profile__header'>
+            <Bio/>
         </div>
         <div className='Tracker'>
-
+          <Tracker/>
         </div>
         <div className='Content'>
-
+          <Posts/>
         </div>
     </div>
   )
