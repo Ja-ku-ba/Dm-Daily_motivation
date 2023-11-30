@@ -9,7 +9,7 @@ const Profile = () => {
         <div className='Profile__header'>
             <Bio/>
         </div>
-        <div className='Tracker'>
+        <div className='Profile__tracker'>
           <Tracker/>
         </div>
         <div className='Content'>

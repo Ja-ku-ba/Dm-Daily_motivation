@@ -1,0 +1,40 @@
+@use "config" as *;
+
+.PostPage {
+    &__coments{
+        width: 95%;
+        margin: 15px auto;
+
+        &__form {
+            background-color: $cardColor;
+            border-radius: 5px;
+            padding: 10px 2.5%;
+            display: flex;
+            flex-direction: column;
+
+            &__input {
+                border-radius: 5px;
+                font-size: larger;
+            }
+
+            &__button {
+                border: none;
+                text-decoration: none;
+                background-color: $elementsColor;
+                color: $backgroundColor;
+                padding: 5px;
+                font-size: larger;
+                border-radius: 5px;
+                margin-top: 5px;
+
+                &:hover {
+                    filter: invert(20%);
+                }
+                
+                &:active {
+                    filter: invert(35%);
+                }
+            }
+        }
+    }
+}

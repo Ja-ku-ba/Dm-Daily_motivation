@@ -1,8 +1,9 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom'
 import dogo from "../assets/images/dogo.jpg"
 
 const Post = () => {
+
   return (
     <div className='Post'>
         <p className='Post__description'>@Taylor: Goal achieved, going out with my dogo! It was a lovley day :)</p>
