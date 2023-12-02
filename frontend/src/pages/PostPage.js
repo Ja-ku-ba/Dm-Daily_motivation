@@ -20,29 +20,39 @@ const PostPage = () => {
 
         <ul className='PostPage__coments__list'>
           <li className='PostPage__coments__list__coment'>
-            <Link>@Taylor</Link>
-            <span>24.11.2023, 12:17</span>
-            <p>Thisgives me THIS postive energy!!!</p>
+            <div className='PostPage__coments__list__coment__info'>
+              <Link>@Taylor</Link>
+              <span>24.11.2023, 12:17</span>
+            </div>
+            <p className='PostPage__coments__list__coment__body'>Thisgives me THIS postive energy!!!</p>
           </li>
           <li className='PostPage__coments__list__coment'>
-            <Link>@Taylor</Link>
-            <span>24.11.2023, 12:17</span>
-            <p>Thisgives me THIS postive energy!!!</p>
+            <div className='PostPage__coments__list__coment__info'>
+              <Link>@Taylor</Link>
+              <span>24.11.2023, 12:17</span>
+            </div>
+            <p className='PostPage__coments__list__coment__body'>Thisgives me THIS postive energy!!!</p>
           </li>
           <li className='PostPage__coments__list__coment'>
-            <Link>@Taylor</Link>
-            <span>24.11.2023, 12:17</span>
-            <p>Thisgives me THIS postive energy!!!</p>
+            <div className='PostPage__coments__list__coment__info'>
+              <Link>@Taylor</Link>
+              <span>24.11.2023, 12:17</span>
+            </div>
+            <p className='PostPage__coments__list__coment__body'>Thisgives me THIS postive energy!!!</p>
           </li>
           <li className='PostPage__coments__list__coment'>
-            <Link>@Taylor</Link>
-            <span>24.11.2023, 12:17</span>
-            <p>Thisgives me THIS postive energy!!!</p>
+            <div className='PostPage__coments__list__coment__info'>
+              <Link>@Taylor</Link>
+              <span>24.11.2023, 12:17</span>
+            </div>
+            <p className='PostPage__coments__list__coment__body'>Thisgives me THIS postive energy!!!</p>
           </li>
           <li className='PostPage__coments__list__coment'>
-            <Link>@Taylor</Link>
-            <span>24.11.2023, 12:17</span>
-            <p>Thisgives me THIS postive energy!!!</p>
+            <div className='PostPage__coments__list__coment__info'>
+              <Link>@Taylor</Link>
+              <span>24.11.2023, 12:17</span>
+            </div>
+            <p className='PostPage__coments__list__coment__body'>Thisgives me THIS postive energy!!!</p>
           </li>
         </ul>
       </div>

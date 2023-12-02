@@ -36,5 +36,34 @@
                 }
             }
         }
+
+        &__list {
+            list-style: none;
+            padding: 0;
+            border-radius: 5px;
+            margin: 0;
+            &__coment {
+                background-color: $cardColor;
+                border-radius: 10px;
+                padding: 5px 4px 3px 4px;
+                margin: 8px 0;
+                font-size: 105%;
+                &__info {
+                    display: flex;
+                    justify-content: space-between;
+                    background-color: $backgroundColor;
+                    border-radius: 5px;
+                    margin: 2px;
+                    padding: 3px;
+                }
+
+                &__body {
+                    background-color: $backgroundColor;
+                    border-radius: 5px;
+                    padding: 3px;
+                    margin: 8px 0;
+                }
+            }
+        }
     }
 }
