@@ -19,8 +19,8 @@ def registraion_view(request):
         if serializer.is_valid():
             account = serializer.save()
             data['response'] = "Sucefully registered a new user"
-            data["email"] = account.email
             data["username"] = account.username
+            data["email"] = account.email
         else:
             data = serializer.errors
             status_response = status.HTTP_406_NOT_ACCEPTABLE
@@ -33,6 +33,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         # Add custom claims
         token['email'] = user.email
+        token["username"] = user.username
         # ...
 
         return token

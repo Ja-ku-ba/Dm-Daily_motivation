@@ -19,6 +19,11 @@ body {
   height: calc(100vh - 25px);
 }
 
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color: red;
+}
+
 ul {
     list-style: none;
 }
