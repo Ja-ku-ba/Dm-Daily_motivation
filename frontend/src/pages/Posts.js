@@ -14,11 +14,11 @@ const Posts = () => {
 
   return (
     <div>
-      <Link to="/post"><Post onClick={() => showPost()}/></Link>
-      <Link to="/post"><Post onClick={() => showPost()}/></Link>
-      <Link to="/post"><Post onClick={() => showPost()}/></Link>
-      <Link to="/post"><Post onClick={() => showPost()}/></Link>
-      <Link to="/post"><Post onClick={() => showPost()}/></Link>
+      <Post/>
+      <Post/>
+      <Post/>
+      <Post/>
+      <Post/>
     </div>
   )
 }
