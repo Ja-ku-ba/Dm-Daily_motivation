@@ -1,0 +1,26 @@
+@use 'config' as *;
+
+.SearchBar {
+    display: flex;
+    flex-direction: row;
+    height: 45px;
+    width: 95%;
+    margin: auto;
+
+    &__field {
+        height: 100%;
+        border: 1px solid $elementsColor;
+        width: 100%;
+        border-radius: 15px 0 0 15px;
+        padding: 13px;
+    }
+
+    &__submit {
+        border: 1px solid $elementsColor;
+        border-radius: 0 15px 15px 0;
+        background-color: $cardColor;
+        filter: invert(100%) sepia(1%) saturate(2185%) hue-rotate(178deg) brightness(99%) contrast(87%);
+        display: flex;
+        align-items: center;
+    }
+}

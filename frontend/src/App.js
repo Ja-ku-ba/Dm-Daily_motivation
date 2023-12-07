@@ -17,6 +17,7 @@ import { AlertProvider } from "./context/AlertContext";
 import Alert from "./components/Alert";
 import Profile from "./pages/Profile";
 import PostPage from "./pages/PostPage";
+import Search from "./pages/Search";
 
 function App() {
     
@@ -34,6 +35,7 @@ function App() {
                   <Route path="/post" element={<PostPage/>}/>
                   {/* <Route path="/post/:username/:added" element={<PostPage/>}/> */}
                   <Route path="/profile/:username" element={<Profile/>}/>
+                  <Route path="/search/:query?" element={<Search/>}/>
                 </Route>
                 <Route path="/login" element={<LoginRegister/>}/>
               </Routes>
