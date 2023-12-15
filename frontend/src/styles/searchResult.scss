@@ -1,0 +1,61 @@
+@use 'config' as *;
+
+.SearchResults{
+    width: 95%;
+    margin: 15px auto 0 auto;
+    border-radius: 15px;
+    background-color: $cardColor;
+    padding: 5px;
+    color: $backgroundColor;
+
+    &__list {
+        border: 1px solid $backgroundColor;
+        border-radius: 15px;
+        padding: 5px;
+        display: flex;
+        flex-direction: row;
+        margin: 10px 0;
+
+        &__Picture {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+
+        &__informations {
+            display: flex;
+            flex-direction: column;
+
+            &__name {
+                font-size: 140%;
+            }
+    
+            // edit me later
+            &__description{
+                overflow: hidden;
+                max-width: 75ch;
+                white-space: nowrap;
+
+            }
+        }
+    }
+
+    &__SeeMore {
+        width: 80%;
+        height: 35px;
+        border-radius: 5px;
+        background-color: $backgroundColor;
+        display: block;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $cardColor;   
+        
+        &:active{
+            background-color: $elementsColor;
+            color: $backgroundColor;
+        }
+    }
+}

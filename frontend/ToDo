@@ -1,4 +1,4 @@
 To do:
     postview 
     Register error catching (gdy sie logujesz, to wyskakuje)
-    
+    searchResults.scss description, change max-width (limit chars length to 250 char, or sth)
