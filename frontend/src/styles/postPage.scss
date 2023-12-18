@@ -67,3 +67,20 @@
         }
     }
 }
+
+.AddPost {
+    width: 95%;
+    margin: auto;
+    background-color: $cardColor;
+    border-radius: 5px;
+    border: none;
+    color: $backgroundColor;
+    padding: 15px 30px;
+    font-size: 25px;
+    display: flex;
+    justify-content: space-between;
+    &__Icon {
+        filter: invert(100%) sepia(1%) saturate(2185%) hue-rotate(178deg) brightness(99%) contrast(87%);
+    }
+
+}

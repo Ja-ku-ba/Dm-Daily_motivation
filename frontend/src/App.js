@@ -18,6 +18,7 @@ import Alert from "./components/Alert";
 import Profile from "./pages/Profile";
 import PostPage from "./pages/PostPage";
 import Search from "./pages/Search";
+import AddPost from "./pages/AddPost";
 
 function App() {
     
@@ -33,6 +34,8 @@ function App() {
                   <Route path="/" element={<Home/>} exact/>
                   <Route path="/posts" element={<Posts/>}/>
                   <Route path="/post" element={<PostPage/>}/>
+                  <Route path="/post/add" element={<AddPost/>}/>
+                  
                   {/* <Route path="/post/:username/:added" element={<PostPage/>}/> */}
                   <Route path="/profile/:username" element={<Profile/>}/>
                   <Route path="/search/:query?" element={<Search/>}/>

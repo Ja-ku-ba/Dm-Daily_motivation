@@ -18,6 +18,25 @@ let messages = {
             "body":"Sprawdź czy wpisnao poprawny email i hasło",
             "color": colors["$elementsColor"]
         }
+    },
+
+    "addPost": {
+        "tooManyFiles": {
+            "body": "Chcesz przesłać za dużo plików, limit to 4",
+            "color": colors['$infColor']
+        },
+        "wrongFormat": {
+            "body": "Przesłany plik musi być zdjęciem lub filmem",
+            "color": colors['$infColor']
+        },
+        "overweight": {
+            "body": "Przesłane pliki ważą więcej niż 50mb",
+            "color": colors['$infColor']
+        },
+        "unfixedErrors": {
+            "body": "Możesz przesłać tylko 4 pliki (zdjęcie lub film), o wadze do 50mb",
+            "color": colors['$infColor']
+        }
     }
 }
 export default messages

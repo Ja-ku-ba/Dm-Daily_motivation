@@ -2,24 +2,27 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions, status
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.views import TokenVerifyView
 
 from ..models import Post
 from .serializers import PostSerializer
-
+# from ...authentiacte import AuthUser
 class Posts(APIView):
-    authentication_classes = [
-        authentication.SessionAuthentication,
-        authentication.TokenAuthentication
-        ]
-    permission_classes = (IsAuthenticated,) 
+    # authentication_classes = [
+    #     authentication.SessionAuthentication,
+    #     authentication.TokenAuthentication
+    #     ]
+    # permission_classes = (IsAuthenticated,) 
 
-    # add authentication later
     def get(self, request):
-        posts = Post.objects.get(id=request.data["id"])
-        serialier = PostSerializer(posts, many=False)
+        print(dir(TokenVerifyView), '======================================================================')
+        try:
+            posts = Post.objects.get(id=request.data["id"])
+            serialier = PostSerializer(posts, many=False)
+        except:
+            serialier = PostSerializer(posts, many=True) 
         return Response(serialier.data)
 
-    # add authentication later
     def post(self, request):
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
@@ -29,7 +32,6 @@ class Posts(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    # add authentication later
     # change the message later, so its tells if post is undeleted or the id is not correct
     def delete(self, request):
         try:
@@ -39,7 +41,6 @@ class Posts(APIView):
         except:
             return Response(data={"deleted": "post deleted unsucesfully, check the post id"}, status=status.HTTP_400_BAD_REQUEST)
 
-    # add authentication later
     def put(self, request):
         try:
             post = Post.objects.get(id=request.data["id"])
