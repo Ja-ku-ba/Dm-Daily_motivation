@@ -20,6 +20,7 @@ class Posts(APIView):
             posts = Post.objects.get(id=request.data["id"])
             serialier = PostSerializer(posts, many=False)
         except:
+            posts = Post.objects.all()
             serialier = PostSerializer(posts, many=True) 
         return Response(serialier.data)
 

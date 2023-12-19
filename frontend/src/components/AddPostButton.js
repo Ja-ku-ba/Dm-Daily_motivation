@@ -7,7 +7,7 @@ const AddPostButton = () => {
   const nav =useNavigate()
 
   return (
-    <button onClick={() => nav("/post/add/")} className='AddPost'>
+    <button onClick={() => nav("/post/add")} className='AddPost'>
       <span className='AddPost__text'>Dodaj nowy post</span>
       <img className='AddPost__Icon' src={plus} alt="add_icon" width={'30px'} height={'30px'}/>
     </button>
